@@ -1,6 +1,8 @@
 package CollectionObjects;
 
-public class Discipline {
+import java.nio.charset.StandardCharsets;
+
+public class Discipline implements Comparable<Discipline>{
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Long labsCount; //Поле может быть null
 
@@ -22,6 +24,17 @@ public class Discipline {
 
     @Override
     public String toString() {
-        return "Название дисциплины: " + name + "; Лекторские часы: " + labsCount;
+        return "Название дисциплины: " + name + "; Колличество работ: " + labsCount;
+    }
+
+    @Override
+    public int compareTo(Discipline o) {
+        if (this.getLabsCount() > o.getLabsCount()) {
+            return 1;
+        }
+        if (this.getLabsCount() < o.getLabsCount()) {
+            return -1;
+        }
+        return 0;
     }
 }

@@ -16,8 +16,7 @@ import java.util.TreeSet;
 
 
 public class XMLparser {
-    public static String convertToXML(LabWorkRepository repository) throws Exception{
-        System.out.println(repository);
+    public static String convertToXML(LabWorkRepository repository) throws Exception {
         JAXBContext context = JAXBContext.newInstance(LabWorkRepository.class);
         Marshaller marshaller = context.createMarshaller();
         marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
@@ -27,9 +26,9 @@ public class XMLparser {
         return sw.toString();
     }
 
-    public static LabWorks convertFromXML(String string) throws JAXBException {
-        JAXBContext context = JAXBContext.newInstance(LabWorks.class);
+    public static LabWorkRepository convertFromXML(String string) throws JAXBException {
+        JAXBContext context = JAXBContext.newInstance(LabWorkRepository.class);
         Unmarshaller unmarshaller = context.createUnmarshaller();
-        return (LabWorks) unmarshaller.unmarshal(new StringReader(string));
+        return (LabWorkRepository) unmarshaller.unmarshal(new StringReader(string));
     }
 }

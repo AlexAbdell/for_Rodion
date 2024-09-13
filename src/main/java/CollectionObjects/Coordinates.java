@@ -6,6 +6,15 @@ public class Coordinates {
 
     public Coordinates(){
     }
+    public int compareTo(Coordinates other){
+        int result = this.x.compareTo(other.x);
+        if (result != 0) return result;
+
+        result = this.y.compareTo(other.y);
+        if (result != 0) return result;
+
+        return 0;
+    }
 
     public Double getX() {
         return x;

@@ -19,8 +19,6 @@ public class GetLabWork {
     public LabWork build() {
         LabWork labWork = new LabWork();
 
-        ZonedDateTime zonedDateTime = ZonedDateTime.now();
-        labWork.setCreationDate(zonedDateTime);
         try {
             System.out.print("Введите название лабораторной работы: ");
             String name = this.scanner.nextLine();
@@ -36,7 +34,7 @@ public class GetLabWork {
         try {
             System.out.print("Введите баллы лабораторной работы: ");
             String line = this.scanner.nextLine();
-            Float minimalpoint = Float.valueOf(line);
+            float minimalpoint = Float.parseFloat(line);
             if (minimalpoint <= 0) {
                 throw new RuntimeException("Балл должен быть больше 0!");
             }
@@ -58,18 +56,14 @@ public class GetLabWork {
         try {
             System.out.print("Введите наcтройку работы: ");
             String line1 = this.scanner.nextLine();
-            Long tunedInWorks = Long.valueOf(line1);
-            if (tunedInWorks == null) {
-                throw new RuntimeException("Настройка работы не может быть null!");
-            }
+            long tunedInWorks = Long.parseLong(line1);
             labWork.setTunedInWorks(tunedInWorks);
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-            return null;
+        } catch (NumberFormatException e){
+            throw new RuntimeException("Введен неверный формат данных");
         }
 
         try {
-            System.out.println("Введите сложность лабораторной работы (NORMAL, INSANE, HOPELESS): ");
+            System.out.printf("Введите сложность лабораторной работы (%S): %n", Difficulty.concat(", "));
             String line2 = this.scanner.nextLine().toUpperCase();
             Difficulty difficulty = Difficulty.valueOf(line2);
             labWork.setDifficulty(difficulty);

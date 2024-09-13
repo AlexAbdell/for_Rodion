@@ -1,7 +1,6 @@
 package Command;
 
 
-
 import App.App;
 import Command.AbstractCommand;
 import Command.Command;
@@ -30,6 +29,7 @@ public class ExecuteScriptCommand extends AbstractCommand implements Command {
                 System.out.println("Команда не найдена");
                 continue;
             }
+            System.out.println("Введена команда: " + commandName);
             command.Handle(commandArgs);
         }
         this.app.scanner = new Scanner(System.in);
